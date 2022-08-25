@@ -1,0 +1,13 @@
+
+    .notification{
+        top:30px;
+        right: 30px;
+        position: absolute;
+        width: 250px;
+        height: fit-content;
+        border-radius: 20px;
+        padding: 20px;
+        display: flex;
+        align-items: center;
+        box-shadow: 0 3px 10px rgb(0 0 0 / 0.7);
+    }

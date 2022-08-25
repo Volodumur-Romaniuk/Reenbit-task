@@ -1,0 +1,87 @@
+.chats{
+    height: 75%;
+    display: flex;
+    flex-direction: column;
+    
+    .title{
+        height: 20%;
+        display: flex;
+        align-items: center;
+        p{
+            font-size: 22px;
+            color: rgb(7, 122, 122);
+            margin-left: 15px;
+        }  
+    }
+    .friends{
+        width: inherit;
+        height: 80%;
+        display: flex;
+        flex-direction: column;
+        .overflow{
+            width: inherit;
+            height: 100%;
+            overflow:scroll;
+            .friend{
+                &:hover{
+                    background: rgb(219, 219, 219);
+                }
+                cursor: pointer;
+                height: 130px;
+                width: 100%;
+                border-bottom: 2px solid #ECECEC;
+                display: grid;
+                place-items: center;
+                .container{
+                    width: 90%;
+                    height: fit-content;
+                    display: flex;
+                    justify-content: space-between;
+                    
+                    .info{
+                        height: inherit;
+                        width: fit-content;
+                        max-width: 80%;
+                        display: flex;
+                        .img{
+                            width: 100px;
+                            border-radius: 50%;
+                            margin-right: 15px;
+                            img{
+                                height: 100%;
+                                width: 100%;
+                                object-fit: contain;
+                            }
+                        }
+                        .text{
+                            height: 90%;
+                            margin: auto 0;
+                            .name{
+                                margin: 7px 0;
+                                font-size: 18px;
+                                font-weight: 500;
+                            }
+                            .last-message{
+                                margin:5px 0;
+                                font-size: 16px;
+                                color:gray;
+                            }
+                        }
+                    }
+                    .date{
+                        margin: 7px 0;
+                        align-self: flex-start;
+                        font-style: italic;
+                        font-size: 16px;
+                        color:gray;
+                        font-weight: 300;
+                    }
+                }
+            }
+            .friend:last-child{
+                border-bottom:none
+            }
+        }
+        
+    }
+}
