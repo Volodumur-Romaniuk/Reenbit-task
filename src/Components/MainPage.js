@@ -5,11 +5,12 @@ import Data from './Data';
 import Sidebar from './Sidebar'
 function MainPage() {
   const [friendId,setFriendId] = useState('')
-  const [arrayChat, setArrayChat] = useState([])
   const [messagess,setMessagess] = useState([])
+  
   const checked_ls = () =>{
     if(!localStorage.getItem('data')){
       localStorage.setItem('data',JSON.stringify(Data))
+      window.location.reload();
     }
     else return
   }
@@ -20,6 +21,8 @@ function MainPage() {
     <div className="mainpage">
       <Sidebar setFriendId={setFriendId} messagess={messagess} />
       <Chat friendId={friendId} setMessagess={setMessagess}/>
+     
+      
     </div>
   );
 }

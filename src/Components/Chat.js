@@ -5,10 +5,10 @@ import moment from 'moment';
 import HandleAlert from './handleAlert';
 function Chat({friendId,setMessagess}) {
     const [message,setMessage] = useState('');
-    const [friendMessage,setFriendMessage] = useState('');
-    const [nameFriend,setNameFriend] = useState('') 
+    const [notification,setNotification] = useState({});
     const scroll_down = useRef(null)
-   const [alert,setAlert] = useState(false)
+    const [alert,setAlert] = useState(false)
+   
      const [messages, setMessages]=useState(JSON.parse(localStorage.getItem('data'))?.friends)
     
       useEffect(()=>{
@@ -26,12 +26,14 @@ function Chat({friendId,setMessagess}) {
           setMessagess(messages);
      },[messages])
 
-        const close_alert = () =>{
-            setTimeout(setAlert(false),5000)
-        }
+        
      const setFriendMessages = () =>{
         axios.get(`https://api.chucknorris.io/jokes/random`).then(res =>{
-            setFriendMessage(res.data.value);
+            setNotification({
+                name:messages.find(x=>x.friendId === friendId)?.name,
+                img:messages.find(x=>x.friendId === friendId)?.imageUrl,
+                text:res.data.value,
+            });
             console.log(res)
             getFriendMessage(res.data.value);
            
@@ -52,7 +54,7 @@ function Chat({friendId,setMessagess}) {
            text:text,
            date_time:moment_date
         };
-       
+        
        res_ls.friends.find(x=> x.friendId === friendId).chat.message.push(ob);
         localStorage.setItem('data',JSON.stringify(res_ls)) 
      }
@@ -98,51 +100,54 @@ function Chat({friendId,setMessagess}) {
    }
    
   return (
-    <div className="chat">
-         {alert ? <HandleAlert notification={messages?.find(x=>x.friendId === friendId)} /> : <></>}
-            <div className="title">
-                <div className="img">
-                    <img src="https://i.ibb.co/jf1NLfv/viber-2021-09-24-11-01-32-719.png" alt="" />
-                </div>      
-                <p className="p-title"> {messages?.find(x=>x.friendId === friendId)?.name} </p>
-            </div>
+      friendId == '' ? <div className="default">
+      <p>Choose a friend</p>
+  </div> : <div className="chat">
+  {alert ? <HandleAlert notification={notification}  setAlert={setAlert} /> : <></>}
+     <div className="title">
+         <div className="img">
+             <img src={messages?.find(x=>x.friendId === friendId)?.imageUrl} alt="" />
+         </div>      
+         <p className="p-title"> {messages?.find(x=>x.friendId === friendId)?.name} </p>
+     </div>
+  
+ <div className="messages">
+ <div className="together">
+     { 
+        messages?.find(x=>x.friendId === friendId)?.chat.message.map((element,index)=>
          
-        <div className="messages">
-        <div className="together">
-            { 
-               messages?.find(x=>x.friendId === friendId)?.chat.message.map((element,index)=>
-                
-                +element.id % 2 === 0 ? <div className="left-message">
-                    <div className="text">
-                        <p>{element.text}</p>
-                    </div>
-                    <div className="date">
-                        <p>{element.date_time}</p>
-                    </div>
-                </div>
-                : <div className="right-message">
-                    <div className="text">
-                        <p>{element.text}</p>
-                    </div>
-                    <div className="date">
-                        <p>{element.date_time}</p>
-                    </div>
-                </div>
-            )
-            }
-            <div ref={scroll_down}></div>
-            </div> 
-            
-        </div>
-        <div className="sender">
-            <form onSubmit={(e)=>onSubmit(e)} action="">
-                <input type="text" onChange={(e)=>setMessage(e.target.value)} placeholder="Type your message" value={message}/>
-                <button type='submit' disabled={message === ''}><svg fill="none" viewBox="0 0 24 24" height="24" width="24" xmlns="http://www.w3.org/2000/svg">
-                    <path xmlns="http://www.w3.org/2000/svg" d="M12 2C12.3788 2 12.725 2.214 12.8944 2.55279L21.8944 20.5528C22.067 20.8978 22.0256 21.3113 21.7882 21.6154C21.5508 21.9195 21.1597 22.0599 20.7831 21.9762L12 20.0244L3.21694 21.9762C2.84035 22.0599 2.44921 21.9195 2.2118 21.6154C1.97439 21.3113 1.93306 20.8978 2.10558 20.5528L11.1056 2.55279C11.275 2.214 11.6212 2 12 2ZM13 18.1978L19.166 19.568L13 7.23607V18.1978ZM11 7.23607L4.83402 19.568L11 18.1978V7.23607Z" fill="gray"></path></svg></button>
-            </form>
-            
-        </div>
-    </div>
+         +element.id % 2 === 0 ? <div className="left-message">
+             <div className="text">
+                 <p>{element.text}</p>
+             </div>
+             <div className="date">
+                 <p>{element.date_time}</p>
+             </div>
+         </div>
+         : <div className="right-message">
+             <div className="text">
+                 <p>{element.text}</p>
+             </div>
+             <div className="date">
+                 <p>{element.date_time}</p>
+             </div>
+         </div>
+     )
+     }
+     <div ref={scroll_down}></div>
+     </div> 
+     
+ </div>
+ <div className="sender">
+     <form onSubmit={(e)=>onSubmit(e)} action="">
+         <input type="text" onChange={(e)=>setMessage(e.target.value)} placeholder="Type your message" value={message}/>
+         <button type='submit' disabled={message === ''}><svg fill="none" viewBox="0 0 24 24" height="24" width="24" xmlns="http://www.w3.org/2000/svg">
+             <path xmlns="http://www.w3.org/2000/svg" d="M12 2C12.3788 2 12.725 2.214 12.8944 2.55279L21.8944 20.5528C22.067 20.8978 22.0256 21.3113 21.7882 21.6154C21.5508 21.9195 21.1597 22.0599 20.7831 21.9762L12 20.0244L3.21694 21.9762C2.84035 22.0599 2.44921 21.9195 2.2118 21.6154C1.97439 21.3113 1.93306 20.8978 2.10558 20.5528L11.1056 2.55279C11.275 2.214 11.6212 2 12 2ZM13 18.1978L19.166 19.568L13 7.23607V18.1978ZM11 7.23607L4.83402 19.568L11 18.1978V7.23607Z" fill="gray"></path></svg></button>
+     </form>
+     
+ </div>
+</div>
+    
   );
 }
 
