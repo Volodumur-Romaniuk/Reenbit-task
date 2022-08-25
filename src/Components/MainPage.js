@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import './MainPage.scss';
 import Chat from './Chat';
-import Data from '../../public/Data';
+import Data from './Data';
 import Sidebar from './Sidebar'
 function MainPage() {
   const [friendId,setFriendId] = useState('')
