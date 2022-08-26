@@ -3,28 +3,33 @@ import './MainPage.scss';
 import Chat from './Chat';
 import Data from './Data';
 import Sidebar from './Sidebar'
+import {useMedia} from 'react-use-media'
+
+ 
 function MainPage() {
   const [friendId,setFriendId] = useState('')
   const [messagess,setMessagess] = useState([])
+  const [mediaState,setMediaState] = useState(false)
+  const resolution = useMedia('(max-width : 769px)');
   
-  const checked_ls = () =>{
-    if(!localStorage.getItem('data')){
-      localStorage.setItem('data',JSON.stringify(Data))
-      window.location.reload();
-    }
-    else return
-  }
-  useEffect(()=>{
-    checked_ls()
-  },[])
+    useEffect(()=>{
+      console.log(mediaState)
+    },[mediaState])
   return (
-    <div className="mainpage">
-      <Sidebar setFriendId={setFriendId} messagess={messagess} />
-      <Chat friendId={friendId} setMessagess={setMessagess}/>
-     
+    
       
-    </div>
+        !resolution ?
+        <div className="mainpage">
+          <Sidebar setFriendId={setFriendId} messagess={messagess} />
+          <Chat friendId={friendId} setMessagess={setMessagess}/>
+        </div>
+        :<div className="mainpage">
+            <Sidebar setFriendId={setFriendId} messagess={messagess} setMediaState={setMediaState} />
+            {mediaState ? <Chat friendId={friendId} setMessagess={setMessagess} setMediaState={setMediaState}/> :<><p></p></>}
+          </div>
+      
   );
 }
 
 export default MainPage;
+/*setMediaState */

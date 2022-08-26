@@ -2,12 +2,14 @@ import React,{useState, useEffect, useRef} from 'react';
 import axios from 'axios'
 import './Chat.scss';
 import moment from 'moment';
+import {useMedia} from 'react-use-media'
 import HandleAlert from './handleAlert';
-function Chat({friendId,setMessagess}) {
+function Chat({friendId,setMessagess,setMediaState}) {
     const [message,setMessage] = useState('');
     const [notification,setNotification] = useState({});
     const scroll_down = useRef(null)
     const [alert,setAlert] = useState(false)
+    const resolution = useMedia('(max-width : 769px)');
    
      const [messages, setMessages]=useState(JSON.parse(localStorage.getItem('data'))?.friends)
     
@@ -104,12 +106,22 @@ function Chat({friendId,setMessagess}) {
       <p>Choose a friend</p>
   </div> : <div className="chat">
   {alert ? <HandleAlert notification={notification}  setAlert={setAlert} /> : <></>}
+  {!resolution ? 
+        <div className="title">
+            <div className="img">
+                <img src={messages?.find(x=>x.friendId === friendId)?.imageUrl} alt="" />
+            </div>      
+            <p className="p-title"> {messages?.find(x=>x.friendId === friendId)?.name} </p>
+        </div>
+        :
      <div className="title">
+         <button onClick={()=>{setMediaState(false);console.log()}}>back</button>
          <div className="img">
              <img src={messages?.find(x=>x.friendId === friendId)?.imageUrl} alt="" />
          </div>      
          <p className="p-title"> {messages?.find(x=>x.friendId === friendId)?.name} </p>
-     </div>
+     </div>}
+     
   
  <div className="messages">
  <div className="together">

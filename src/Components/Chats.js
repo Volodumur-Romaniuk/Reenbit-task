@@ -1,6 +1,6 @@
 import React,{useState,useEffect} from 'react';
 import './Chats.scss';
-function Chats({setFriendId,messagess,renderChats,searchText}) {
+function Chats({setFriendId,messagess,renderChats,searchText,setMediaState}) {
     const [chatsForName,setChatsForName] = useState([]);
     const [chatsForMessage,setChatsForMessage] = useState([]);
     const [countChats,setCountChats] = useState([])
@@ -83,7 +83,7 @@ function Chats({setFriendId,messagess,renderChats,searchText}) {
                 {
                     !renderChats ? 
                         messagess?.sort((a,b)=> stringToDate(b.last_message.date) - stringToDate(a.last_message.date ) ).map((element,index)=>
-                            <div className="friend" onClick={()=>setFriendId(element.friendId)} >
+                            <div className="friend" onClick={()=>{setFriendId(element.friendId);setMediaState(true)}} >
                             <div className="container">
                                 <div className="info">
                                     <div className="img">

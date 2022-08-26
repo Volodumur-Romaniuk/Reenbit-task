@@ -19,3 +19,9 @@
         }
     }
 }
+@media(max-width:769px){
+    .mainpage{
+        grid-template-columns: 100%;
+        position: relative; 
+    }
+}

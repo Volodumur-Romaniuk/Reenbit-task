@@ -1,4 +1,4 @@
-const date = 
+const data = 
     {
       userId:"hgfhfghgf",
       userName:"Vova",
@@ -138,4 +138,4 @@ const date =
 
     }
   
-export default date;
+export default data;
