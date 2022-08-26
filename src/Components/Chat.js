@@ -17,12 +17,15 @@ function Chat({friendId,setMessagess,setMediaState}) {
             setMessagess(messages);
            setMessages(JSON.parse(localStorage.getItem('data'))?.friends)    
      },[localStorage.getItem('data')])
+     useEffect(()=>{
+        setMessagess(messages);        
+ },[])
 
      useEffect(()=>{
         setMessages(JSON.parse(localStorage.getItem('data'))?.friends)    
   },[friendId])
 
-  
+
       useEffect(()=>{
           scroll_down.current?.scrollIntoView({behavior: 'smooth'})
           set_last_message();
