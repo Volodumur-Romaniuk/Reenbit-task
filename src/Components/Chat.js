@@ -22,6 +22,7 @@ function Chat({friendId,setMessagess,setMediaState}) {
         setMessages(JSON.parse(localStorage.getItem('data'))?.friends)    
   },[friendId])
 
+  
       useEffect(()=>{
           scroll_down.current?.scrollIntoView({behavior: 'smooth'})
           set_last_message();

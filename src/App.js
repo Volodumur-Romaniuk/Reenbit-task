@@ -10,7 +10,7 @@ function App() {
       if(!localStorage.getItem('data')){
         localStorage.setItem('data',JSON.stringify(Data))
         console.log('work')
-        window.location.reload();
+        window.location.reload(true);
       }
       else return
      

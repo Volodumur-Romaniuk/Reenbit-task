@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import './MainPage.scss';
 import Chat from './Chat';
-import Data from './Data';
+
 import Sidebar from './Sidebar'
 import {useMedia} from 'react-use-media'
 
