@@ -1,4 +1,4 @@
-const data = 
+const Data = 
     {
       userId:"hgfhfghgf",
       userName:"Vova",
@@ -138,4 +138,4 @@ const data =
 
     }
   
-export default data;
+export default Data;

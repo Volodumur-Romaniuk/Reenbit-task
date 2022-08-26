@@ -4,6 +4,7 @@ import './Chat.scss';
 import moment from 'moment';
 import {useMedia} from 'react-use-media'
 import HandleAlert from './handleAlert';
+
 function Chat({friendId,setMessagess,setMediaState}) {
     const [message,setMessage] = useState('');
     const [notification,setNotification] = useState({});
@@ -14,6 +15,7 @@ function Chat({friendId,setMessagess,setMediaState}) {
      const [messages, setMessages]=useState(JSON.parse(localStorage.getItem('data'))?.friends)
     
       useEffect(()=>{
+          
             setMessagess(messages);
            setMessages(JSON.parse(localStorage.getItem('data'))?.friends)    
      },[localStorage.getItem('data')])
