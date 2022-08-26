@@ -13,7 +13,11 @@ function MainPage() {
   const resolution = useMedia('(max-width : 769px)');
   useEffect(()=>{
     console.log(messagess)
-  },messagess)
+  },[messagess])
+
+  useEffect(()=>{
+    console.log(messagess)
+  },[])
   
     useEffect(()=>{
       console.log(mediaState)

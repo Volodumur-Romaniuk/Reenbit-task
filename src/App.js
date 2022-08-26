@@ -11,6 +11,7 @@ function App() {
         localStorage.setItem('data',JSON.stringify(Data))
         console.log('work')
         window.location.reload(true);
+        window.location.href='/'
       }
       else return
      
