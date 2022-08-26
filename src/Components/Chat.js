@@ -121,7 +121,7 @@ function Chat({friendId,setMessagess,setMediaState}) {
         </div>
         :
      <div className="title">
-         <button onClick={()=>{setMediaState(false);console.log()}}>back</button>
+         <button onClick={()=>{setMediaState(false);console.log()}}> {"<- Back"}</button>
          <div className="img">
              <img src={messages?.find(x=>x.friendId === friendId)?.imageUrl} alt="" />
          </div>      
