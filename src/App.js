@@ -4,18 +4,17 @@ import MainPage from './Components/MainPage';
 import Data from './Components/Data'
 function App() {
   
-  
- useEffect(()=>{
-    
-      if(!localStorage.getItem('data')){
-        localStorage.setItem('data',JSON.stringify(Data))
-        console.log('work')
-        setTimeout(()=>window.location.reload(),1000);
-      }
-      else return
-
- },[])
+    useEffect(()=>{
+      
+        if(localStorage.length === 0){
+          localStorage.setItem('data',JSON.stringify(Data))
+          console.log('work')
+        }
+        else return
+        window.location.reload()
+  },[])
    
+  
  
   return (
     <div className="App">
