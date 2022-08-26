@@ -10,10 +10,12 @@ function App() {
         if(localStorage.length === 0){
           localStorage.setItem('data',JSON.stringify(Data))
           console.log('work')
-          setLoading(false)
+          
+          window.location.reload()
+          window.location.reload()
         }
-        else return
-        window.location.reload()
+        
+       
   },[])
    
   
