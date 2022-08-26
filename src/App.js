@@ -10,13 +10,13 @@ function App() {
       if(!localStorage.getItem('data')){
         localStorage.setItem('data',JSON.stringify(Data))
         console.log('work')
-        window.location.reload(true);
-        window.location.href='/'
+       
       }
       else return
      
     
-
+      window.location.reload(true);
+      window.location.href='/'
     // window.addEventListener('storage',checked_ls)
     // return () =>{
     //   window.removeEventListener('storage',checked_ls)
