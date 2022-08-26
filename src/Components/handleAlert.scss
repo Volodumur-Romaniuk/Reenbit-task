@@ -55,3 +55,64 @@
             }
         }
     }
+
+    @media (max-width:769px) {
+        .notification{
+            top:15px;
+            right: 15px;
+            position: absolute;
+            width: 250px;
+            height: 150px;
+            border-radius: 20px;
+            padding: 5px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: #6c758d;
+            box-shadow: 0 3px 10px rgb(0 0 0 / 0.7);
+            .image{
+                width: 60px;
+                height: 60px;
+                border-radius: 50%;
+                border: 1px solid black;
+                overflow:hidden;
+                img{
+                    height: 100%;
+                    width: 100%;
+                    object-fit: cover;
+                }
+            }
+            .text{
+                
+                width: 70%;
+                height: fit-content;
+                display: flex;
+                flex-direction: column;
+                &p{
+                    width: fit-content;
+                    margin: 0;
+                    height: fit-content;
+                }
+                .name{
+                   
+                    font-size: 16px;
+                    color:black;
+                    font-weight: 400;
+                }
+                .text{
+                    font-size: 16px;
+                    color:black;
+                }
+                .date{
+                    align-self: flex-end;
+                    font-size: 16px;
+                    color:rgb(212, 209, 209);
+                    font-style: italic;  
+                    margin-right: 10px;  
+                    margin-bottom: 10px;
+                }
+            }
+        }
+    
+        
+    }
