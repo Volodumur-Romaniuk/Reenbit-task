@@ -6,9 +6,10 @@ function App() {
   const checked_ls = () =>{
     if(!localStorage.getItem('data')){
       localStorage.setItem('data',JSON.stringify(Data))
-      window.location.reload();
+     
     }
     else return
+    window.location.reload();
   }
 
   useEffect(()=>{
