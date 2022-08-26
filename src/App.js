@@ -13,10 +13,9 @@ function App() {
        
       }
       else return
-     
-    
-      window.location.reload(true);
-      window.location.href='/'
+
+      
+      
     // window.addEventListener('storage',checked_ls)
     // return () =>{
     //   window.removeEventListener('storage',checked_ls)
@@ -24,6 +23,9 @@ function App() {
     
  },[])
    
+ useEffect(()=>{
+    window.location.reload(true);
+ },[localStorage.getItem('data')])
   return (
     <div className="App">
       <MainPage/>
