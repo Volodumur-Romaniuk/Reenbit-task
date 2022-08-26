@@ -3,18 +3,25 @@ import './App.css';
 import MainPage from './Components/MainPage';
 import Data from './Components/Data'
 function App() {
-  const checked_ls = () =>{
-    if(!localStorage.getItem('data')){
-      localStorage.setItem('data',JSON.stringify(Data))
+  
+  
+ useEffect(()=>{
+    
+      if(!localStorage.getItem('data')){
+        localStorage.setItem('data',JSON.stringify(Data))
+        console.log('work')
+        window.location.reload();
+      }
+      else return
      
-    }
-    else return
-    window.location.reload();
-  }
+    
 
-  useEffect(()=>{
-    checked_ls()
-  },[])
+    // window.addEventListener('storage',checked_ls)
+    // return () =>{
+    //   window.removeEventListener('storage',checked_ls)
+    // }
+    
+ },[])
    
   return (
     <div className="App">
