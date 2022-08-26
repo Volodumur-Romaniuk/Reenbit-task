@@ -23,9 +23,7 @@ function App() {
     
  },[])
    
- useEffect(()=>{
-    window.location.reload(true);
- },[localStorage.getItem('data')])
+ 
   return (
     <div className="App">
       <MainPage/>
