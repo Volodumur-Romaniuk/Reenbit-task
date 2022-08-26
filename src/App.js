@@ -10,17 +10,10 @@ function App() {
       if(!localStorage.getItem('data')){
         localStorage.setItem('data',JSON.stringify(Data))
         console.log('work')
-       
+        setTimeout(()=>window.location.reload(),1000);
       }
       else return
 
-      
-      
-    // window.addEventListener('storage',checked_ls)
-    // return () =>{
-    //   window.removeEventListener('storage',checked_ls)
-    // }
-    
  },[])
    
  
