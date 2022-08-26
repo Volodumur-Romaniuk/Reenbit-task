@@ -1,31 +1,51 @@
-import React, {useEffect,useState} from 'react';
+import React, {Component, useEffect,useState} from 'react';
 import './App.css';
 import MainPage from './Components/MainPage';
 import Data from './Components/Data'
+import { ClipLoader } from 'react-spinners';
 
-function App() {
-  const [loading, setLoading] = useState(true);
-    useEffect(()=>{
+class App extends Component {
+  constructor(props){
+    super(props)
+    this.state = props
+    this.loading = true
+    if(localStorage.length == 0){
+      localStorage.setItem('data',JSON.stringify(Data));
+      this.loading = false
+      console.log('work')
+    }
+    else  this.loading = false
+  }
+  
+  componentWillUnmount(){
+    console.log(this.loading)
+    window.location.reload()
+  }
+//   useEffect(()=>{
+    
+//     console.log(Data)
+
+//     if(!localStorage.getItem('data')){
+     
+     
       
-        if(localStorage.length === 0){
-          localStorage.setItem('data',JSON.stringify(Data))
-          console.log('work')
-          
-          window.location.reload()
-          window.location.reload()
-        }
-        
-       
-  },[])
+//       window.location.reload()
+//     }
+//     else console.log('not-work')
+    
+    
+
+// },[])
+  render(){
+    return (
+      <div className="App">
+      {this.loading ? <><ClipLoader></ClipLoader></> : <MainPage/> }
+        <div className="bottom-frame"></div>
+      </div>
+    );
+  }
    
   
- 
-  return (
-    <div className="App">
-    <MainPage/> 
-      <div className="bottom-frame"></div>
-    </div>
-  );
 }
 
 export default App;

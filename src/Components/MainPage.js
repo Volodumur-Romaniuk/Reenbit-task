@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import './MainPage.scss';
 import Chat from './Chat';
-
+import Data from './Data';
 import Sidebar from './Sidebar'
 import {useMedia} from 'react-use-media'
 
@@ -11,19 +11,20 @@ function MainPage() {
   const [messagess,setMessagess] = useState([])
   const [mediaState,setMediaState] = useState(false)
   const resolution = useMedia('(max-width : 769px)');
+
+  
+    
+
   useEffect(()=>{
     console.log(messagess)
   },[messagess])
 
-  useEffect(()=>{
-    console.log(messagess)
-  },[])
-  
     useEffect(()=>{
       console.log(mediaState)
     },[mediaState])
   return (
     
+     
       
         !resolution ?
         <div className="mainpage">
